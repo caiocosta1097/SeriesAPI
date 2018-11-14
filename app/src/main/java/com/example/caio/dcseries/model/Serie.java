@@ -31,6 +31,15 @@ public class Serie {
     @SerializedName("vote_average")
     private Number avaliacao;
 
+    @SerializedName("number_of_episodes")
+    private int nEpisodios;
+
+    @SerializedName("number_of_seasons")
+    private int nTemporadas;
+
+    @SerializedName("in_production")
+    private boolean status;
+
 
     public int getId() {
         return id;
@@ -102,5 +111,29 @@ public class Serie {
 
     public void setAvaliacao(Number avaliacao) {
         this.avaliacao = avaliacao;
+    }
+
+    public int getnEpisodios() {
+        return nEpisodios;
+    }
+
+    public void setnEpisodios(int nEpisodios) {
+        this.nEpisodios = nEpisodios;
+    }
+
+    public int getnTemporadas() {
+        return nTemporadas;
+    }
+
+    public void setnTemporadas(int nTemporadas) {
+        this.nTemporadas = nTemporadas;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }
