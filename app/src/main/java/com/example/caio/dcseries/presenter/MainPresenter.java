@@ -27,9 +27,9 @@ public class MainPresenter {
 
     }
 
-    public void carregarSeries(){
+    public void carregarSeries(int page){
 
-        Call<SeriesResponse> call = service.obterSeriesPopulares(SerieService.API_KEY, "pt-BR", 1);
+        Call<SeriesResponse> call = service.obterSeriesPopulares(SerieService.API_KEY, "pt-BR", page);
 
         view.exibirBarraProgresso();
 

@@ -1,8 +1,11 @@
 package com.example.caio.dcseries;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
@@ -12,11 +15,9 @@ import com.example.caio.dcseries.presenter.MainPresenter;
 import com.example.caio.dcseries.service.ServiceFactory;
 import com.example.caio.dcseries.view.MainView;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements MainView {
+public class MainActivity extends AppCompatActivity implements MainView, AdapterView.OnItemClickListener {
 
     ListView listView;
     SerieAdapter adapter;
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
     ProgressBar progressBar;
 
     MainPresenter presenter;
+
+    int page = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +41,33 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
         listView.setAdapter(adapter);
 
+        listView.setOnItemClickListener(this);
+
         presenter = new MainPresenter(this, ServiceFactory.create());
+
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+                if (scrollState == SCROLL_STATE_IDLE) {
+                    if (listView.getLastVisiblePosition() >= listView.getCount() - 1) {
+
+                        if (page != 1000){
+
+                            page++;
+                            presenter.carregarSeries(page);
+
+                        }
+                    }
+                }
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+            }
+        });
 
     }
 
@@ -46,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     protected void onResume() {
         super.onResume();
 
-        presenter.carregarSeries();
+        presenter.carregarSeries(page);
 
     }
 
@@ -69,8 +98,20 @@ public class MainActivity extends AppCompatActivity implements MainView {
     @Override
     public void listaSeries(List<Serie> listSeries) {
 
-        adapter.clear();
         adapter.addAll(listSeries);
+
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        Serie serie = adapter.getItem(position);
+
+        Intent intent = new Intent(this, VisualizarActivity.class);
+
+        intent.putExtra("idSerie", serie.getId());
+
+        startActivity(intent);
 
     }
 }

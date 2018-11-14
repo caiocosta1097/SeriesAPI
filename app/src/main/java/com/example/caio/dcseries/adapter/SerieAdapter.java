@@ -7,10 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.caio.dcseries.R;
 import com.example.caio.dcseries.model.Serie;
+import com.example.caio.dcseries.service.SerieService;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -37,8 +40,10 @@ public class SerieAdapter extends ArrayAdapter<Serie> {
         Serie serie = getItem(position);
 
         TextView txtTitulo = view.findViewById(R.id.txtTitulo);
+        ImageView poster = view.findViewById(R.id.poster);
 
         txtTitulo.setText(serie.getTitulo());
+        Picasso.get().load(SerieService.BASE_IMAGES_URL + SerieService.POSTER_SIZE + serie.getPoster()).into(poster);
 
         return  view;
 
