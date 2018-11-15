@@ -22,9 +22,6 @@ public class Serie {
     @SerializedName("overview")
     private String sinopse;
 
-    @SerializedName("popularity")
-    private Number popularidade;
-
     @SerializedName("first_air_date")
     private String estreia;
 
@@ -87,14 +84,6 @@ public class Serie {
 
     public void setSinopse(String sinopse) {
         this.sinopse = sinopse;
-    }
-
-    public Number getPopularidade() {
-        return popularidade;
-    }
-
-    public void setPopularidade(Number popularidade) {
-        this.popularidade = popularidade;
     }
 
     public String getEstreia() {

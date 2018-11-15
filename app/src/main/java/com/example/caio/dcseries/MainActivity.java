@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements MainView, Adapter
 
         presenter = new MainPresenter(this, ServiceFactory.create());
 
+        presenter.carregarSeries(page);
+
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -68,14 +70,6 @@ public class MainActivity extends AppCompatActivity implements MainView, Adapter
 
             }
         });
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        presenter.carregarSeries(page);
 
     }
 

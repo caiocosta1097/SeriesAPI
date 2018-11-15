@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.caio.dcseries.R;
@@ -41,9 +42,11 @@ public class SerieAdapter extends ArrayAdapter<Serie> {
 
         TextView txtTitulo = view.findViewById(R.id.txtTitulo);
         ImageView poster = view.findViewById(R.id.poster);
+        RatingBar ratingBar = view.findViewById(R.id.ratingbar);
 
         txtTitulo.setText(serie.getTitulo());
         Picasso.get().load(SerieService.BASE_IMAGES_URL + SerieService.POSTER_SIZE + serie.getPoster()).into(poster);
+        ratingBar.setRating(serie.getAvaliacao().floatValue() / 2);
 
         return  view;
 
