@@ -2,7 +2,11 @@ package com.example.caio.dcseries;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -21,35 +25,37 @@ public class VisualizarActivity extends AppCompatActivity implements VisualizarV
 
     ProgressBar progressBar;
 
+    CardView cardView;
+
+    Toolbar toolbar;
+
     int id;
 
-    ImageView fundo;
-    TextView txtTitulo, txtTituloOrignal, txtEstreia, txtSinopse, txtTemporadas, txtEpisodios, txtStatus;
-    TextView titulo1, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7;
+    ImageView fundo, imgAvalicao;
+    TextView txtSinopse, txtTemporadas, txtEpisodios, txtAvalicao;
+    TextView titulo1, titulo2, titulo3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualizar);
 
-        id = getIntent().getIntExtra("idSerie", 0);
+        Window w = getWindow();
+        w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
+        id = getIntent().getIntExtra("idSerie", 0);
+        toolbar = findViewById(R.id.toolbar);
         progressBar = findViewById(R.id.progressBar);
+        cardView = findViewById(R.id.cardView);
         fundo = findViewById(R.id.fundo);
-        txtTitulo = findViewById(R.id.txtTitulo);
-        txtTituloOrignal = findViewById(R.id.txtTituloOriginal);
-        txtEstreia = findViewById(R.id.txtEstreia);
+        imgAvalicao = findViewById(R.id.imgAvalicao);
         txtSinopse = findViewById(R.id.txtSinopse);
         txtTemporadas = findViewById(R.id.txtTemporadas);
         txtEpisodios = findViewById(R.id.txtEpisodios);
-        txtStatus = findViewById(R.id.txtStatus);
+        txtAvalicao = findViewById(R.id.txtAvaliacao);
         titulo1 = findViewById(R.id.titulo1);
         titulo2 = findViewById(R.id.titulo2);
         titulo3 = findViewById(R.id.titulo3);
-        titulo4 = findViewById(R.id.titulo4);
-        titulo5 = findViewById(R.id.titulo5);
-        titulo6 = findViewById(R.id.titulo6);
-        titulo7 = findViewById(R.id.titulo7);
 
         presenter = new VisualizarPresenter(this, ServiceFactory.create());
 
@@ -67,21 +73,17 @@ public class VisualizarActivity extends AppCompatActivity implements VisualizarV
     public void exibirBarraProgresso() {
 
         progressBar.setVisibility(View.VISIBLE);
+        toolbar.setVisibility(View.GONE);
+        cardView.setVisibility(View.GONE);
         fundo.setVisibility(View.GONE);
-        txtTitulo.setVisibility(View.GONE);
-        txtTituloOrignal.setVisibility(View.GONE);
+        imgAvalicao.setVisibility(View.GONE);
         txtTemporadas.setVisibility(View.GONE);
         txtEpisodios.setVisibility(View.GONE);
-        txtStatus.setVisibility(View.GONE);
-        txtEstreia.setVisibility(View.GONE);
+        txtAvalicao.setVisibility(View.GONE);
         txtSinopse.setVisibility(View.GONE);
         titulo1.setVisibility(View.GONE);
         titulo2.setVisibility(View.GONE);
         titulo3.setVisibility(View.GONE);
-        titulo4.setVisibility(View.GONE);
-        titulo5.setVisibility(View.GONE);
-        titulo6.setVisibility(View.GONE);
-        titulo7.setVisibility(View.GONE);
 
     }
 
@@ -89,43 +91,35 @@ public class VisualizarActivity extends AppCompatActivity implements VisualizarV
     public void esconderBarraProgresso() {
 
         progressBar.setVisibility(View.GONE);
+        toolbar.setVisibility(View.VISIBLE);
+        cardView.setVisibility(View.VISIBLE);
         fundo.setVisibility(View.VISIBLE);
-        txtTitulo.setVisibility(View.VISIBLE);
-        txtTituloOrignal.setVisibility(View.VISIBLE);
+        imgAvalicao.setVisibility(View.VISIBLE);
         txtTemporadas.setVisibility(View.VISIBLE);
         txtEpisodios.setVisibility(View.VISIBLE);
-        txtStatus.setVisibility(View.VISIBLE);
-        txtEstreia.setVisibility(View.VISIBLE);
+        txtAvalicao.setVisibility(View.VISIBLE);
         txtSinopse.setVisibility(View.VISIBLE);
         titulo1.setVisibility(View.VISIBLE);
         titulo2.setVisibility(View.VISIBLE);
         titulo3.setVisibility(View.VISIBLE);
-        titulo4.setVisibility(View.VISIBLE);
-        titulo5.setVisibility(View.VISIBLE);
-        titulo6.setVisibility(View.VISIBLE);
-        titulo7.setVisibility(View.VISIBLE);
 
     }
 
     @Override
     public void pegarSerie(Serie serie) {
 
-        String estreia = new DateUtil().formatarData(serie.getEstreia());
-
+        toolbar.setTitle(serie.getTitulo());
         Picasso.get().load(SerieService.BASE_IMAGES_URL + SerieService.BACKDROP_SIZE + serie.getImagemFundo()).into(fundo);
-        txtTitulo.setText(serie.getTitulo());
-        txtTituloOrignal.setText(serie.getTituloOrignal());
-        txtEstreia.setText(estreia);
         txtSinopse.setText(serie.getSinopse());
         txtTemporadas.setText(String.valueOf(serie.getnTemporadas()));
         txtEpisodios.setText(String.valueOf(serie.getnEpisodios()));
+        txtAvalicao.setText(serie.getAvaliacao().toString() + "/10");
 
         if (serie.isStatus() == true)
-            txtStatus.setText("Ativa");
+            toolbar.setSubtitle("Ativa".toString());
 
-        else
-            txtStatus.setText("Encerrada");
-
+         else
+            toolbar.setSubtitle("Encerrada".toString());
 
     }
 }

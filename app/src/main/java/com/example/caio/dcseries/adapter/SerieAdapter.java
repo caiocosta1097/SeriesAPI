@@ -44,7 +44,7 @@ public class SerieAdapter extends ArrayAdapter<Serie> {
         ImageView poster = view.findViewById(R.id.poster);
         RatingBar ratingBar = view.findViewById(R.id.ratingbar);
 
-        txtTitulo.setText(serie.getTitulo());
+        txtTitulo.setText(position+1 + " - " + serie.getTitulo());
         Picasso.get().load(SerieService.BASE_IMAGES_URL + SerieService.POSTER_SIZE + serie.getPoster()).into(poster);
         ratingBar.setRating(serie.getAvaliacao().floatValue() / 2);
 

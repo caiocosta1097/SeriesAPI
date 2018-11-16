@@ -1,184 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VisualizarActivity"
     android:orientation="vertical"
-    android:gravity="center">
+    tools:context=".VisualizarActivity">
 
     <ProgressBar
+        android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/progressBar"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        android:layout_gravity="center"/>
 
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <LinearLayout
+        <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:titleEnabled="false">
 
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/fundo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:layout_marginBottom="20dp"/>
+                android:scaleType="centerCrop"
+                android:fitsSystemWindows="true"
+                app:layout_collapseMode="parallax" />
 
-            <TextView
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:textSize="20sp"
-                android:text="Título"
-                android:layout_marginLeft="5dp"
-                android:id="@+id/titulo1"/>
+                android:paddingTop="20dp"
+                android:paddingBottom="10dp"
+                app:layout_collapseMode="pin"
+                android:layout_gravity="bottom"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-            <TextView
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:id="@+id/cardView"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardElevation="5dp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textColor="#000"
-                android:textSize="18sp"
-                android:id="@+id/txtTitulo"
-                tools:text="The Walking Dead"
-                android:layout_marginLeft="5dp"/>
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:textSize="20sp"
-                android:text="Título original"
-                android:layout_marginLeft="5dp"
-                android:id="@+id/titulo2"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textColor="#000"
-                android:textSize="18sp"
-                android:id="@+id/txtTituloOriginal"
-                tools:text="The Walking Dead"
-                android:layout_marginLeft="5dp"/>
+                    <LinearLayout
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:textSize="20sp"
-                android:text="Temporadas"
-                android:layout_marginLeft="5dp"
-                android:id="@+id/titulo3"/>
+                        <TextView
+                            android:id="@+id/txtTemporadas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#000"
+                            android:textSize="30sp"
+                            android:textStyle="bold"
+                            tools:text="9"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textColor="#000"
-                android:textSize="18sp"
-                android:id="@+id/txtTemporadas"
-                tools:text="9"
-                android:layout_marginLeft="5dp"/>
+                        <TextView
+                            android:id="@+id/titulo1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Temporadas"
+                            android:textColor="#000"
+                            android:textSize="20sp"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:textSize="20sp"
-                android:text="Episódios"
-                android:layout_marginLeft="5dp"
-                android:id="@+id/titulo4"/>
+                    </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textColor="#000"
-                android:textSize="18sp"
-                android:id="@+id/txtEpisodios"
-                tools:text="123"
-                android:layout_marginLeft="5dp"/>
+                    <LinearLayout
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:textSize="20sp"
-                android:text="Status"
-                android:layout_marginLeft="5dp"
-                android:id="@+id/titulo5"/>
+                        <TextView
+                            android:id="@+id/txtEpisodios"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#000"
+                            android:textSize="30sp"
+                            tools:text="123"
+                            android:textStyle="bold"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textColor="#000"
-                android:textSize="18sp"
-                android:id="@+id/txtStatus"
-                tools:text="Ativa"
-                android:layout_marginLeft="5dp"/>
+                        <TextView
+                            android:id="@+id/titulo2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Episódios"
+                            android:textColor="#000"
+                            android:textSize="20sp"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:textSize="20sp"
-                android:text="Estreia"
-                android:layout_marginLeft="5dp"
-                android:id="@+id/titulo6"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textColor="#000"
-                android:textSize="18sp"
-                android:id="@+id/txtEstreia"
-                tools:text="31/10/2010"
-                android:layout_marginLeft="5dp"/>
+                    </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:textSize="20sp"
-                android:text="Sinopse"
-                android:layout_marginLeft="5dp"
-                android:id="@+id/titulo7"/>
+                </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textColor="#000"
-                android:textSize="18sp"
-                android:id="@+id/txtSinopse"
-                tools:text="Zumbis dominam o mundo dos vivos, e os sobreviventesunem forças para manter a raça humana."
-                android:layout_marginLeft="5dp"
-                android:paddingBottom="10dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="20dp">
 
-        </LinearLayout>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/rating"
+                        android:id="@+id/imgAvalicao"/>
 
-    </ScrollView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="5dp"
+                        android:id="@+id/txtAvaliacao"/>
 
-</LinearLayout>
+                </LinearLayout>
+
+
+
+                <TextView
+                    android:id="@+id/titulo3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Sinopse"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/txtSinopse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    tools:text="Zumbis dominam o mundo dos vivos, e os sobreviventesunem forças para manter a raça humana." />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>
