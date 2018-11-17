@@ -20,6 +20,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements MainView, AdapterView.OnItemClickListener {
 
     ListView listView;
+
     SerieAdapter adapter;
 
     ProgressBar progressBar;

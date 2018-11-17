@@ -2,6 +2,8 @@ package com.example.caio.dcseries.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class Serie {
 
     @SerializedName("id")
@@ -36,6 +38,9 @@ public class Serie {
 
     @SerializedName("in_production")
     private boolean status;
+
+    @SerializedName("genres")
+    private Genero[] generos;
 
 
     public int getId() {
@@ -124,5 +129,13 @@ public class Serie {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public Genero[] getGeneros() {
+        return generos;
+    }
+
+    public void setGeneros(Genero[] generos) {
+        this.generos = generos;
     }
 }

@@ -1,8 +1,12 @@
 package com.example.caio.dcseries.presenter;
 
+import com.example.caio.dcseries.model.Atores;
+import com.example.caio.dcseries.model.AtoresResponse;
 import com.example.caio.dcseries.model.Serie;
 import com.example.caio.dcseries.service.SerieService;
 import com.example.caio.dcseries.view.VisualizarView;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,6 +44,28 @@ public class VisualizarPresenter {
 
             @Override
             public void onFailure(Call<Serie> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+    public void carregarAtores(int id){
+
+        Call<AtoresResponse> call = service.obterAtor(id, SerieService.API_KEY, "pt-BR");
+
+        call.enqueue(new Callback<AtoresResponse>() {
+            @Override
+            public void onResponse(Call<AtoresResponse> call, Response<AtoresResponse> response) {
+
+               List<Atores> atores = response.body().getCast();
+
+               view.listaAtores(atores);
+
+            }
+
+            @Override
+            public void onFailure(Call<AtoresResponse> call, Throwable t) {
 
             }
         });
