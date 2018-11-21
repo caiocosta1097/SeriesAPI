@@ -11,10 +11,10 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.caio.dcseries.R;
 import com.example.caio.dcseries.model.Serie;
-import com.example.caio.dcseries.service.SerieService;
-import com.squareup.picasso.Picasso;
+import com.example.caio.dcseries.util.Constantes;
 
 import java.util.ArrayList;
 
@@ -44,8 +44,8 @@ public class SerieAdapter extends ArrayAdapter<Serie> {
         ImageView poster = view.findViewById(R.id.poster);
         RatingBar ratingBar = view.findViewById(R.id.ratingbar);
 
-        txtTitulo.setText(position+1 + " - " + serie.getTitulo());
-        Picasso.get().load(SerieService.BASE_IMAGES_URL + SerieService.POSTER_SIZE + serie.getPoster()).into(poster);
+        txtTitulo.setText(position + 1 + " - " + serie.getTitulo());
+        Glide.with(getContext()).load(Constantes.BASE_IMAGES_URL + Constantes.IMAGES_SIZE + serie.getPoster()).into(poster);
         ratingBar.setRating(serie.getAvaliacao().floatValue() / 2);
 
         return  view;

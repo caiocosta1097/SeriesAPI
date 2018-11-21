@@ -6,6 +6,7 @@ import com.example.caio.dcseries.model.SeriesResponse;
 
 import com.example.caio.dcseries.model.Serie;
 import com.example.caio.dcseries.service.SerieService;
+import com.example.caio.dcseries.util.Constantes;
 import com.example.caio.dcseries.view.MainView;
 
 
@@ -29,7 +30,7 @@ public class MainPresenter {
 
     public void carregarSeries(int page){
 
-        Call<SeriesResponse> call = service.obterSeriesPopulares(SerieService.API_KEY, "pt-BR", page);
+        Call<SeriesResponse> call = service.obterSeriesPopulares(Constantes.API_KEY, "pt-BR", page);
 
         view.exibirBarraProgresso();
 

@@ -1,4 +1,4 @@
-package com.example.caio.dcseries;
+package com.example.caio.dcseries.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
+import com.example.caio.dcseries.R;
 import com.example.caio.dcseries.adapter.SerieAdapter;
 import com.example.caio.dcseries.model.Serie;
 import com.example.caio.dcseries.presenter.MainPresenter;

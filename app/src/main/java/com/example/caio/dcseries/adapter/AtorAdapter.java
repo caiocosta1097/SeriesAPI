@@ -7,19 +7,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.example.caio.dcseries.R;
-import com.example.caio.dcseries.model.Atores;
-import com.example.caio.dcseries.service.SerieService;
-import com.squareup.picasso.Picasso;
+import com.example.caio.dcseries.model.Ator;
+import com.example.caio.dcseries.util.Constantes;
 
 import java.util.List;
 
 public class AtorAdapter extends RecyclerView.Adapter {
 
-    private List<Atores> atores;
+    private List<Ator> atores;
     private Context context;
 
-    public AtorAdapter(List<Atores> atores, Context context){
+    public AtorAdapter(List<Ator> atores, Context context){
 
         this.atores = atores;
         this.context = context;
@@ -43,12 +43,11 @@ public class AtorAdapter extends RecyclerView.Adapter {
 
         AtorViewHolder viewHolder = (AtorViewHolder) holder;
 
-        Atores ator = atores.get(position);
+        Ator ator = atores.get(position);
 
-        Picasso.get().load(SerieService.BASE_IMAGES_URL + SerieService.POSTER_SIZE + ator.getFoto()).into(((AtorViewHolder) holder).foto);
-
-        ((AtorViewHolder) holder).txtNome.setText(ator.getNome());
-        ((AtorViewHolder) holder).txtPersonagem.setText(ator.getPersonagem());
+        Glide.with(context).load(Constantes.BASE_IMAGES_URL + Constantes.IMAGES_SIZE + ator.getFoto()).into(viewHolder.foto);
+        viewHolder.txtNome.setText(ator.getNome());
+        viewHolder.txtPersonagem.setText(ator.getPersonagem());
 
     }
 

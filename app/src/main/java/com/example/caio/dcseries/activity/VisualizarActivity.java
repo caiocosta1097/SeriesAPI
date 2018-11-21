@@ -1,4 +1,4 @@
-package com.example.caio.dcseries;
+package com.example.caio.dcseries.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,17 +10,17 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.caio.dcseries.R;
 import com.example.caio.dcseries.adapter.AtorAdapter;
-import com.example.caio.dcseries.model.Atores;
+import com.example.caio.dcseries.model.Ator;
 import com.example.caio.dcseries.model.Genero;
 import com.example.caio.dcseries.model.Serie;
 import com.example.caio.dcseries.presenter.VisualizarPresenter;
-import com.example.caio.dcseries.service.SerieService;
 import com.example.caio.dcseries.service.ServiceFactory;
+import com.example.caio.dcseries.util.Constantes;
 import com.example.caio.dcseries.view.VisualizarView;
 import com.squareup.picasso.Picasso;
 
@@ -53,6 +53,7 @@ public class VisualizarActivity extends AppCompatActivity implements VisualizarV
         w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
         id = getIntent().getIntExtra("idSerie", 0);
+
         toolbar = findViewById(R.id.toolbar);
         progressBar = findViewById(R.id.progressBar);
         recyclerView = findViewById(R.id.recyclerView);
@@ -129,7 +130,7 @@ public class VisualizarActivity extends AppCompatActivity implements VisualizarV
     }
 
     @Override
-    public void listaAtores(List<Atores> atores) {
+    public void listaAtores(List<Ator> atores) {
 
         recyclerView.setAdapter(new AtorAdapter(atores, this));
 
@@ -155,7 +156,7 @@ public class VisualizarActivity extends AppCompatActivity implements VisualizarV
         }
 
         toolbar.setTitle(serie.getTitulo());
-        Picasso.get().load(SerieService.BASE_IMAGES_URL + SerieService.BACKDROP_SIZE + serie.getImagemFundo()).into(fundo);
+        Picasso.get().load(Constantes.BASE_IMAGES_URL + Constantes.IMAGES_SIZE + serie.getImagemFundo()).into(fundo);
         txtSinopse.setText(serie.getSinopse());
         txtTemporadas.setText(String.valueOf(serie.getnTemporadas()));
         txtEpisodios.setText(String.valueOf(serie.getnEpisodios()));

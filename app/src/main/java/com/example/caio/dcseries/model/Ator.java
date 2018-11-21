@@ -2,7 +2,7 @@ package com.example.caio.dcseries.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Atores {
+public class Ator {
 
     @SerializedName("character")
     private String personagem;

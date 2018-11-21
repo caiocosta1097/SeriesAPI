@@ -1,9 +1,10 @@
 package com.example.caio.dcseries.presenter;
 
-import com.example.caio.dcseries.model.Atores;
+import com.example.caio.dcseries.model.Ator;
 import com.example.caio.dcseries.model.AtoresResponse;
 import com.example.caio.dcseries.model.Serie;
 import com.example.caio.dcseries.service.SerieService;
+import com.example.caio.dcseries.util.Constantes;
 import com.example.caio.dcseries.view.VisualizarView;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class VisualizarPresenter {
 
     public void carregarSerie(int id){
 
-        Call<Serie> call = service.obterSerie(id, SerieService.API_KEY, "pt-BR");
+        Call<Serie> call = service.obterSerie(id, Constantes.API_KEY, "pt-BR");
 
         view.exibirBarraProgresso();
 
@@ -52,13 +53,13 @@ public class VisualizarPresenter {
 
     public void carregarAtores(int id){
 
-        Call<AtoresResponse> call = service.obterAtor(id, SerieService.API_KEY, "pt-BR");
+        Call<AtoresResponse> call = service.obterAtor(id, Constantes.API_KEY, "pt-BR");
 
         call.enqueue(new Callback<AtoresResponse>() {
             @Override
             public void onResponse(Call<AtoresResponse> call, Response<AtoresResponse> response) {
 
-               List<Atores> atores = response.body().getCast();
+               List<Ator> atores = response.body().getCast();
 
                view.listaAtores(atores);
 

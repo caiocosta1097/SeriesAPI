@@ -10,7 +10,7 @@ public class AtoresResponse {
     private int id;
 
     @SerializedName("cast")
-    private List<Atores> cast;
+    private List<Ator> cast;
 
     public int getId() {
         return id;
@@ -20,11 +20,11 @@ public class AtoresResponse {
         this.id = id;
     }
 
-    public List<Atores> getCast() {
+    public List<Ator> getCast() {
         return cast;
     }
 
-    public void setCast(List<Atores> cast) {
+    public void setCast(List<Ator> cast) {
         this.cast = cast;
     }
 }
