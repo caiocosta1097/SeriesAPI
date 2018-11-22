@@ -28,32 +28,28 @@ import java.util.List;
 
 public class VisualizarActivity extends AppCompatActivity implements VisualizarView {
 
+    // Inicializando as variáveis
     VisualizarPresenter presenter;
-
     ProgressBar progressBar;
-
     RecyclerView recyclerView;
-
     CardView cardView;
-
     Toolbar toolbar;
-
     int id;
-
     ImageView fundo, imgAvalicao;
-    TextView txtSinopse, txtTemporadas, txtEpisodios, txtAvalicao, txtGenero;
-    TextView titulo1, titulo2, titulo3, titulo4, titulo5;
+    TextView txtSinopse, txtTemporadas, txtEpisodios, txtAvalicao, txtGenero, titulo1, titulo2, titulo3, titulo4, titulo5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualizar);
 
-        Window w = getWindow();
-        w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        // Remove a barra de status
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
+        // Pega o id da série selecionada
         id = getIntent().getIntExtra("idSerie", 0);
 
+        // Pega o id dos elementos do XML
         toolbar = findViewById(R.id.toolbar);
         progressBar = findViewById(R.id.progressBar);
         recyclerView = findViewById(R.id.recyclerView);
@@ -71,24 +67,25 @@ public class VisualizarActivity extends AppCompatActivity implements VisualizarV
         titulo4 = findViewById(R.id.titulo4);
         titulo5 = findViewById(R.id.titulo5);
 
+        // Cria um presenter
         presenter = new VisualizarPresenter(this, ServiceFactory.create());
 
+        // Carrega a série
+        presenter.carregarSerie(id);
+
+        // Carrega os atores da série
         presenter.carregarAtores(id);
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        presenter.carregarSerie(id);
-
-    }
-
+    // Método para exibir a barra de progresso
     @Override
     public void exibirBarraProgresso() {
 
+        // progressBar é o único elemento visível na tela
         progressBar.setVisibility(View.VISIBLE);
+
+        // Todos os outros desaparecem
         toolbar.setVisibility(View.GONE);
         cardView.setVisibility(View.GONE);
         fundo.setVisibility(View.GONE);
@@ -107,10 +104,14 @@ public class VisualizarActivity extends AppCompatActivity implements VisualizarV
 
     }
 
+    // Método para esconder a barra de progresso
     @Override
     public void esconderBarraProgresso() {
 
+        // progressBar é o único elemento que desaparece
         progressBar.setVisibility(View.GONE);
+
+        // Todos os outros ficam visíveis
         toolbar.setVisibility(View.VISIBLE);
         cardView.setVisibility(View.VISIBLE);
         fundo.setVisibility(View.VISIBLE);
@@ -129,25 +130,33 @@ public class VisualizarActivity extends AppCompatActivity implements VisualizarV
 
     }
 
+    // Método para mostrar os atores da série
     @Override
     public void listaAtores(List<Ator> atores) {
 
+        // Criando o recyclerView e já incluindo o adapter com os atores
         recyclerView.setAdapter(new AtorAdapter(atores, this));
 
+        // Colocando a lista na horizontal
         RecyclerView.LayoutManager layout = new LinearLayoutManager(this,
                 LinearLayoutManager.HORIZONTAL, false);
 
+        // Colocando a lista na horizontal no recyclerView
         recyclerView.setLayoutManager(layout);
 
     }
 
+    // Método para pegar a série
     @Override
     public void pegarSerie(Serie serie) {
 
+        // Array que recebe todos os gêneros da série
         Genero[] generos = serie.getGeneros();
 
+        // Loop para incluir cada gênero do array no TextView usando o meétodo append
         for (int i = 0; i < generos.length; i++){
 
+            // Verificar se é o último item do array. Se for, não inclui um '\n', senão inclui um '\n'
             if (i == generos.length - 1)
                 txtGenero.append(generos[i].getGenero());
             else
@@ -155,6 +164,7 @@ public class VisualizarActivity extends AppCompatActivity implements VisualizarV
 
         }
 
+        // Preenchendo os elementos do XML com as informações da série
         toolbar.setTitle(serie.getTitulo());
         Picasso.get().load(Constantes.BASE_IMAGES_URL + Constantes.IMAGES_SIZE + serie.getImagemFundo()).into(fundo);
         txtSinopse.setText(serie.getSinopse());
@@ -162,6 +172,7 @@ public class VisualizarActivity extends AppCompatActivity implements VisualizarV
         txtEpisodios.setText(String.valueOf(serie.getnEpisodios()));
         txtAvalicao.setText(serie.getAvaliacao().toString() + "/10");
 
+        // Verificando se a série ainda está ativa. Se sim, estará 'Renovada', senão estará 'Finalizada'
         if (serie.isStatus() == true)
             toolbar.setSubtitle("Renovada");
 

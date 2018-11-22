@@ -45,7 +45,12 @@ public class AtorAdapter extends RecyclerView.Adapter {
 
         Ator ator = atores.get(position);
 
-        Glide.with(context).load(Constantes.BASE_IMAGES_URL + Constantes.IMAGES_SIZE + ator.getFoto()).into(viewHolder.foto);
+        if (ator.getFoto() == null)
+            viewHolder.foto.setImageResource(R.drawable.indisponivel);
+
+        else
+            Glide.with(context).load(Constantes.BASE_IMAGES_URL + Constantes.IMAGES_SIZE + ator.getFoto()).into(viewHolder.foto);
+
         viewHolder.txtNome.setText(ator.getNome());
         viewHolder.txtPersonagem.setText(ator.getPersonagem());
 
