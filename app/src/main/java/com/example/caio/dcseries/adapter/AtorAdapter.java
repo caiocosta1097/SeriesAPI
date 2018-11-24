@@ -16,9 +16,14 @@ import java.util.List;
 
 public class AtorAdapter extends RecyclerView.Adapter {
 
+    // Variáveis do construtor
     private List<Ator> atores;
     private Context context;
 
+    // Declarando o ViewHolder
+    AtorViewHolder viewHolder;
+
+    // Construtor
     public AtorAdapter(List<Ator> atores, Context context){
 
         this.atores = atores;
@@ -30,10 +35,13 @@ public class AtorAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
+        // Pegando o layout do XML
         View view = LayoutInflater.from(context).inflate(R.layout.list_view_atores, parent, false);
 
-        AtorViewHolder viewHolder = new AtorViewHolder(view);
+        // Criando um ViewHolder
+        viewHolder = new AtorViewHolder(view);
 
+        // Retorna o viewHolder
         return viewHolder;
 
     }
@@ -41,16 +49,20 @@ public class AtorAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        AtorViewHolder viewHolder = (AtorViewHolder) holder;
+        // viewHolder recebe o holder do método
+        viewHolder = (AtorViewHolder) holder;
 
+        // Cria um novo ator pegando a posição dele na lista
         Ator ator = atores.get(position);
 
+        // Verifica se está sem foto. Se sim, põe uma imagem de indisponível, senão põe a foto do ator
         if (ator.getFoto() == null)
             viewHolder.foto.setImageResource(R.drawable.indisponivel);
 
         else
             Glide.with(context).load(Constantes.BASE_IMAGES_URL + Constantes.IMAGES_SIZE + ator.getFoto()).into(viewHolder.foto);
 
+        // Preenche as informações do ator
         viewHolder.txtNome.setText(ator.getNome());
         viewHolder.txtPersonagem.setText(ator.getPersonagem());
 
@@ -58,6 +70,8 @@ public class AtorAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
+
+        // Lista tem o tamanho do número de atores
         return atores.size();
     }
 }

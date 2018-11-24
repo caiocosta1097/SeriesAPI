@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 public class SerieAdapter extends ArrayAdapter<Serie> {
 
+    // Construtor
     public SerieAdapter(Context context){
 
         super(context, 0, new ArrayList<Serie>());
@@ -30,24 +31,30 @@ public class SerieAdapter extends ArrayAdapter<Serie> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
+        // view recebe o convertView
         View view = convertView;
 
+        // Vefifica se a view está null. Se sim, colocao layout da séries
         if (view == null){
 
             view = LayoutInflater.from(getContext()).inflate(R.layout.list_view_item, parent, false);
 
         }
 
+        // Cria uma nova série pegando a posição da lista
         Serie serie = getItem(position);
 
+        // Pega o id dos elementos XML
         TextView txtTitulo = view.findViewById(R.id.txtTitulo);
         ImageView poster = view.findViewById(R.id.poster);
         RatingBar ratingBar = view.findViewById(R.id.ratingbar);
 
+        // Preenche as informações da série
         txtTitulo.setText(position + 1 + " - " + serie.getTitulo());
         Glide.with(getContext()).load(Constantes.BASE_IMAGES_URL + Constantes.IMAGES_SIZE + serie.getPoster()).into(poster);
         ratingBar.setRating(serie.getAvaliacao().floatValue() / 2);
 
+        // Retorna a view
         return  view;
 
     }

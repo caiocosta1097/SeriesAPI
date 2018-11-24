@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -156,6 +155,16 @@ public class VisualizarActivity extends AppCompatActivity implements VisualizarV
         // Loop para incluir cada gênero do array no TextView usando o meétodo append
         for (int i = 0; i < generos.length; i++){
 
+            // Verifica quais gêneros estão em inglês. Se estriver, coloca a tradução
+            if (generos[i].getGenero().equals("Action & Adventure"))
+                generos[i].setGenero("Ação & Aventura");
+
+            else if (generos[i].getGenero().equals("Sci-Fi & Fantasy"))
+                generos[i].setGenero("Ficção científica & Fantasia");
+
+            else if (generos[i].getGenero().equals("War & Politics"))
+                generos[i].setGenero("Guerra & Política");
+
             // Verificar se é o último item do array. Se for, não inclui um '\n', senão inclui um '\n'
             if (i == generos.length - 1)
                 txtGenero.append(generos[i].getGenero());
@@ -170,7 +179,10 @@ public class VisualizarActivity extends AppCompatActivity implements VisualizarV
         txtSinopse.setText(serie.getSinopse());
         txtTemporadas.setText(String.valueOf(serie.getnTemporadas()));
         txtEpisodios.setText(String.valueOf(serie.getnEpisodios()));
-        txtAvalicao.setText(serie.getAvaliacao().toString() + "/10");
+
+        // Seperanda a avaliacao apatir do ponto e substituindo pela vírgula
+        String[] avaliacao = String.valueOf(serie.getAvaliacao()).split("\\.");
+        txtAvalicao.setText(avaliacao[0] + "," + avaliacao[1] + "/10");
 
         // Verificando se a série ainda está ativa. Se sim, estará 'Renovada', senão estará 'Finalizada'
         if (serie.isStatus() == true)
