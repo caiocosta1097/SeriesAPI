@@ -55,15 +55,16 @@ public class AtorAdapter extends RecyclerView.Adapter {
         // Cria um novo ator pegando a posição dele na lista
         Ator ator = atores.get(position);
 
-        // Verifica se está sem foto. Se sim, põe uma imagem de indisponível, senão põe a foto do ator
+        // Verifica se está sem foto. Se sim, põe uma imagem de indisponível
         if (ator.getFoto() == null)
             viewHolder.foto.setImageResource(R.drawable.indisponivel);
-
+        //Senão põe a foto do ator
         else
             Glide.with(context).load(Constantes.BASE_IMAGES_URL + Constantes.IMAGES_SIZE + ator.getFoto()).into(viewHolder.foto);
 
-        // Preenche as informações do ator
+        // Preenche as informações do com o nome
         viewHolder.txtNome.setText(ator.getNome());
+        // Preenche as informações do com o personagem
         viewHolder.txtPersonagem.setText(ator.getPersonagem());
 
     }

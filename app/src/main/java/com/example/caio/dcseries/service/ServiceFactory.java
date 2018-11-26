@@ -7,6 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceFactory {
 
+    //Método para conseguir usar o serviço retrofit
     public static SerieService create(){
 
         Retrofit retrofit = new Retrofit.Builder()

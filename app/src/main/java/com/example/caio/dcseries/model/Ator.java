@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Ator {
 
+    //Nome do atributo que está na API e varíavel que recebe esse atributo
     @SerializedName("character")
     private String personagem;
 
@@ -13,6 +14,7 @@ public class Ator {
     @SerializedName("profile_path")
     private String foto;
 
+    //MÉTODOS "GET" E "SET" DAS VARIÁVEIS
     public String getPersonagem() {
         return personagem;
     }

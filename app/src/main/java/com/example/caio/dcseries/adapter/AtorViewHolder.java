@@ -18,8 +18,11 @@ public class AtorViewHolder extends RecyclerView.ViewHolder {
         super(view);
 
         // Pega o id dos elementos do XML
+        //id da foto
         foto = view.findViewById(R.id.foto);
+        //id do nome
         txtNome = view.findViewById(R.id.txtNome);
+        //id do personagem
         txtPersonagem = view.findViewById(R.id.txtPersonagem);
 
     }

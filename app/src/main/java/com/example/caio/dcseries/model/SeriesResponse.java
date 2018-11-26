@@ -1,12 +1,12 @@
 package com.example.caio.dcseries.model;
 
-import com.example.caio.dcseries.model.Serie;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class SeriesResponse {
 
+    //Nome do atributo que está na API e varíavel que recebe esse atributo
     @SerializedName("page")
     private int page;
 
@@ -19,6 +19,7 @@ public class SeriesResponse {
     @SerializedName("total_pages")
     private int total_pages;
 
+    //MÉTODOS "GET" E "SET" DAS VARIÁVEIS
     public int getPage() {
         return page;
     }

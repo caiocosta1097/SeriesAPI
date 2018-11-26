@@ -2,10 +2,9 @@ package com.example.caio.dcseries.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 public class Serie {
 
+    //Nome do atributo que está na API e varíavel que recebe esse atributo
     @SerializedName("id")
     private int id;
 
@@ -42,7 +41,7 @@ public class Serie {
     @SerializedName("genres")
     private Genero[] generos;
 
-
+    //MÉTODOS "GET" E "SET" DAS VARIÁVEIS
     public int getId() {
         return id;
     }

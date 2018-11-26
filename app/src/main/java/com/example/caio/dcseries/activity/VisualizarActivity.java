@@ -152,10 +152,10 @@ public class VisualizarActivity extends AppCompatActivity implements VisualizarV
         // Array que recebe todos os gêneros da série
         Genero[] generos = serie.getGeneros();
 
-        // Loop para incluir cada gênero do array no TextView usando o meétodo append
+        // Loop para incluir cada gênero do array no TextView usando o método append
         for (int i = 0; i < generos.length; i++){
 
-            // Verifica quais gêneros estão em inglês. Se estriver, coloca a tradução
+            // Verifica quais gêneros estão em inglês. Se estiver, coloca a tradução
             if (generos[i].getGenero().equals("Action & Adventure"))
                 generos[i].setGenero("Ação & Aventura");
 
@@ -165,7 +165,7 @@ public class VisualizarActivity extends AppCompatActivity implements VisualizarV
             else if (generos[i].getGenero().equals("War & Politics"))
                 generos[i].setGenero("Guerra & Política");
 
-            // Verificar se é o último item do array. Se for, não inclui um '\n', senão inclui um '\n'
+            // Verifica se é o último item do array. Se for, não inclui um '\n', senão inclui um '\n'
             if (i == generos.length - 1)
                 txtGenero.append(generos[i].getGenero());
             else
@@ -180,7 +180,7 @@ public class VisualizarActivity extends AppCompatActivity implements VisualizarV
         txtTemporadas.setText(String.valueOf(serie.getnTemporadas()));
         txtEpisodios.setText(String.valueOf(serie.getnEpisodios()));
 
-        // Seperanda a avaliacao apatir do ponto e substituindo pela vírgula
+        // Seperando a avaliacao apatir do ponto e substituindo pela vírgula
         String[] avaliacao = String.valueOf(serie.getAvaliacao()).split("\\.");
         txtAvalicao.setText(avaliacao[0] + "," + avaliacao[1] + "/10");
 

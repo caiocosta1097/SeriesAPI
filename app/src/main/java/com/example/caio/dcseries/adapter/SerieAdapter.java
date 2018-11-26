@@ -26,7 +26,7 @@ public class SerieAdapter extends ArrayAdapter<Serie> {
         super(context, 0, new ArrayList<Serie>());
 
     }
-
+    //Adapter da série
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -45,8 +45,11 @@ public class SerieAdapter extends ArrayAdapter<Serie> {
         Serie serie = getItem(position);
 
         // Pega o id dos elementos XML
+        //id do titulo
         TextView txtTitulo = view.findViewById(R.id.txtTitulo);
+        //id do poster
         ImageView poster = view.findViewById(R.id.poster);
+        //id do ratingBar
         RatingBar ratingBar = view.findViewById(R.id.ratingbar);
 
         // Preenche as informações da série
