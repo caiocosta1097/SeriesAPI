@@ -18,7 +18,7 @@
 
 ## Lista com o elenco de cada série
 
-   ![listaatores](https://user-images.githubusercontent.com/38070806/49015502-6c43a500-f16a-11e8-91e8-1d823488fd98.jpg)
+   ![listaatores](https://user-images.githubusercontent.com/38070806/49369056-a1567700-f6d7-11e8-888e-61c429f51865.jpg)
    
    Na lista de atores é carregado todos os atores que compõem  o elenco, com sua imagem, nome de personagem e nome real.  
 
